@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    url: jdbc:mysql://1.14.61.157:3306/ZtoE?useUnicode=true&useSSL=false&serverTimezone=GMT&characterEncoding=UTF-8
+    username: root
+    password: 1999
+    driver-class-name: com.mysql.jdbc.Driver
+#  web:
+#    resources:
+#      static-locations:
+#      - classpath:/static/imgs
+#      - classpath:/static/js
+#      - classpath:/static/style
+#      - classpath:/public
+#  mvc:
+#    static-path-pattern:
+#    - /static/**
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath:com.june.start.mapper.*.xml
+server:
+  servlet:
+    context-path: /FromZerotoExpert/

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Douzi
  */
 @RestController
-@RequestMapping("/FromZerotoExpert")
+@RequestMapping("/")
 public class StartController {
     @GetMapping
     public String getHello(@CookieValue(value = "isNew", defaultValue = "yes") String user, HttpServletResponse response) {
