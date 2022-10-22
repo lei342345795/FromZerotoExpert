@@ -1,15 +1,16 @@
 function submitForm() {
     var username = document.getElementById("username");
     var password = document.getElementById("password");
+    var reg = new RegExp('^(?!\\d+$)(?![a-z]+$)(?![A-Z]+$)[\\da-zA-z]{6,16}$')
     if (username.value == null || password.value == null || username.value.length === 0 ||
         password.value.length === 0) {
         alert("用户名或密码不能为空")
         return;
-    } else if (username.value.length > 8) {
-        alert("用户名长度不应超过8位")
+    } else if (username.value.length > 15) {
+        alert("用户名长度不应超过15位")
         return;
-    } else if (password.value.length < 8 || password.value.length > 12) {
-        alert("密码长度应在8-14位")
+    } else if (!reg.test(password.value)) {
+        alert("密码长度应在6-16位，且至少包含两种字符")
         return;
     }
     axios({
