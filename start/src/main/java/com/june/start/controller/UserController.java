@@ -23,13 +23,11 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @Autowired
-    Trie trie;
 
     @PostMapping
     public R register(@Valid @RequestBody User user) {
         String userName = user.getUserName();
-        if (MyUtils.isIllegal(trie, userName)) {
+        if (MyUtils.isIllegal(userName)) {
             return R.error("您输入的用户名包含敏感词，请重新输入");
         }
         if (userService.isDuplicated(userName)) {

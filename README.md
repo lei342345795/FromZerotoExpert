@@ -44,4 +44,13 @@
    另外，Java远程连接MySQL时也遇到了很多问题，总结见：https://blog.csdn.net/weixin_57923019/article/details/127439538
 2. 初步完善注册√
    用户昵称重复和长度控制在2.1已经完成了，加上了正则表达式验证密码格式。敏感词采用前缀树完成。参考资料：https://www.iamshuaidi.com/151.html
+   
+   敏感词功能完善——从敏感词库读取，实现启动时加载前缀树的方法：
+   1. 采用static代码块，使用实现了ApplicationContextAware借口的类SpringContextHolder.getBean方法获取bean
+   2. 定义方法并采用@PostConstruct注解
+
+   @PostConstruct修饰的方法会在服务器加载Servlet的时候运行，并且只会被服务器执行一次。PostConstruct在构造函数之后执行，init（）方法之前执行。 通常我们会是在Spring框架中使用到@PostConstruct注解 该注解的方法在整个Bean初始化中的执行顺序：
+
+   Constructor(构造方法) -> @Autowired(依赖注入) -> @PostConstruct(注释的方法)
+
 3. 设计一个加密算法ing
