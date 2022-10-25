@@ -33,8 +33,8 @@ public class UserController {
         if (userService.isDuplicated(userName)) {
             return R.error("用户名重复");
         }
-        String password = DigestUtils.md5DigestAsHex(user.getUserPwd().getBytes());
-        user.setUserPwd(password);
+        String encode = MyUtils.getBcrypt(user.getUserPwd());
+        user.setUserPwd(encode);
         userService.add(user);
         return R.ok();
     }

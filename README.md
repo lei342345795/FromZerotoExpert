@@ -53,4 +53,8 @@
 
    Constructor(构造方法) -> @Autowired(依赖注入) -> @PostConstruct(注释的方法)
 
-3. 设计一个加密算法ing
+3. 设计一个加密算法√
+
+   采用bcrypt算法进行加密，参考资料：
+   * https://www.cnblogs.com/Leo_wl/p/16444814.html
+   * https://zhuanlan.zhihu.com/p/144392745
