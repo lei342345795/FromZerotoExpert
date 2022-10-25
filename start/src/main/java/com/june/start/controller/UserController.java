@@ -2,11 +2,9 @@ package com.june.start.controller;
 
 import com.june.start.common.R;
 import com.june.start.common.utils.MyUtils;
-import com.june.start.common.utils.Trie;
 import com.june.start.domain.User;
 import com.june.start.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
