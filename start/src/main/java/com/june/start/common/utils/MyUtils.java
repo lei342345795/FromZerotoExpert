@@ -5,8 +5,11 @@ import com.june.start.service.DisallowWordService;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import sun.misc.BASE64Encoder;
 
 import javax.annotation.PostConstruct;
+import java.security.SecureRandom;
+import java.util.Base64;
 import java.util.List;
 
 /**
@@ -56,6 +59,13 @@ public class MyUtils {
      */
     public static boolean checkBcrypt(String password, String bcrypt) {
         return BCrypt.checkpw(password, bcrypt);
+    }
+
+    public static String getRandom() {
+        SecureRandom secureRandom = new SecureRandom();
+        byte[] bytes = new byte[12];
+        secureRandom.nextBytes(bytes);
+        return Base64.getEncoder().encodeToString(bytes);
     }
 
 }

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登陆</title>
+<!--    <link rel="stylesheet" type="text/css" href="../static/style/login.css" />-->
+    <link rel="stylesheet" type="text/css" href="/FromZerotoExpert/style/login.css" />
+</head>
+
+<body>
+<script src="/FromZerotoExpert/js/axios-0.18.0.js"></script>
+<script src="/FromZerotoExpert/js/login.js"></script>
+<div id="register">
+    <p id="welcome">欢迎登陆</p>
+    <form id="form">
+        <label for="username">用户名</label>
+        <input type="text" name="username" id="username" placeholder="请输入您的用户名"><br>
+        <label for="password">密码</label>
+        <input type="password" name="password" id="password" placeholder="请输入您的密码"><br>
+        <input type="button" value="登陆" id="submit" onclick="submitForm()">
+    </form>
+</div>
+
+</body>
+</html>

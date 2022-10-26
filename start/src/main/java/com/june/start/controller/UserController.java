@@ -5,24 +5,29 @@ import com.june.start.common.utils.MyUtils;
 import com.june.start.domain.User;
 import com.june.start.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author Douzi
  */
 @RestController
-@RequestMapping("/Register")
+@RequestMapping("/")
 public class UserController {
     @Autowired
-    UserService userService;
+    private UserService userService;
+
+    @Autowired
+    private RedisTemplate<String, String> redisTemplate;
 
 
-    @PostMapping
+    @PostMapping("/Register")
     public R register(@Valid @RequestBody User user) {
         String userName = user.getUserName();
         if (MyUtils.isIllegal(userName)) {
@@ -35,5 +40,26 @@ public class UserController {
         user.setUserPwd(encode);
         userService.add(user);
         return R.ok();
+    }
+
+    @PostMapping("/Login")
+    public R login(@Valid @RequestBody User user, HttpServletRequest request) {
+        String userName = user.getUserName();
+        String userPwd = user.getUserPwd();
+        String realPwd = userService.getPwd(userName);
+        if (realPwd == null) {
+            return R.error("用户不存在");
+        }
+        boolean check = MyUtils.checkBcrypt(userPwd, realPwd);
+        if (check) {
+            HttpSession session = request.getSession();
+            String sessionAttribute = MyUtils.getRandom();
+            session.setAttribute("LoginStatus", sessionAttribute);
+            session.setMaxInactiveInterval(24 * 60 * 60);
+            redisTemplate.opsForValue().set(sessionAttribute, userName, 1, TimeUnit.DAYS);
+            return R.ok();
+        } else {
+            return R.error("用户名或密码错误");
+        }
     }
 }
