@@ -60,6 +60,7 @@
    * https://zhuanlan.zhihu.com/p/144392745
 4. 拥有登陆功能√
    
-   这里遇到了配置拦截器后静态资源全部不能访问的问题，原因是当WebMvcConfigurationSupport类不存在的时候才会生效WebMvc自动化配置，WebMvc自动配置类中不仅定义了classpath:/META-INF/resources/，classpath:/resources/，classpath:/static/，classpath:/public/等路径的映射，还定义了配置文件spring.mvc开头的配置信息等。这样就会导致静态资源访问出现问题，改为实现WebMvcConfigurer接口即可解决这个问题。
-   
-   参考资料：https://www.cnblogs.com/sueyyyy/p/11611676.html
+   * 这里遇到了配置拦截器后静态资源全部不能访问的问题，原因是当WebMvcConfigurationSupport类不存在的时候才会生效WebMvc自动化配置，WebMvc自动配置类中不仅定义了classpath:/META-INF/resources/，classpath:/resources/，classpath:/static/，classpath:/public/等路径的映射，还定义了配置文件spring.mvc开头的配置信息等。这样就会导致静态资源访问出现问题，改为实现WebMvcConfigurer接口即可解决这个问题。
+   * 参考资料：https://www.cnblogs.com/sueyyyy/p/11611676.html
+   * 配置拦截器后遇到了配置拦截器后RedisTemplate为空指针的问题
+   * 参考资料：https://blog.csdn.net/H1455483319/article/details/108328872
