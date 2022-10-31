@@ -1,5 +1,6 @@
 package com.june.start.service;
 
+import com.june.start.common.po.LoginPo;
 import com.june.start.domain.User;
 import org.springframework.stereotype.Service;
 
@@ -22,9 +23,16 @@ public interface UserService {
     boolean isDuplicated(String userName);
 
     /**
-     * 根据用户名获取加密后的密码
+     * 根据用户名获取加密后的密码和用户id
      * @param userName
-     * @return 加密后的密码
+     * @return 加密后的密码和用户id封装成的Po
      */
-    String getPwd(String userName);
+    LoginPo getLogin(String userName);
+
+    /**
+     * 根据用户id获取用户名
+     * @param userId 用户id
+     * @return 用户名
+     */
+    String getUserName(int userId);
 }

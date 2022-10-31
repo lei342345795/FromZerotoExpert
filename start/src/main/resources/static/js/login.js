@@ -34,6 +34,6 @@ function submitForm() {
     })
 }
 function Redirect() {
-    window.location="http://localhost:8080/FromZerotoExpert";
+    window.location="http://localhost:8080/FromZerotoExpert/";
     //TODO: 上线前要更改重定向的url
 }

@@ -1,5 +1,6 @@
 package com.june.start.service.serviceImpl;
 
+import com.june.start.common.po.LoginPo;
 import com.june.start.mapper.UserMapper;
 import com.june.start.domain.User;
 import com.june.start.service.UserService;
@@ -31,7 +32,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String getPwd(String userName) {
-        return userMapper.getPwd(userName);
+    public LoginPo getLogin(String userName) {
+        return userMapper.getLogin(userName);
     }
+
+    @Override
+    public String getUserName(int userId) {
+        return userMapper.getUserName(userId);
+    }
+
+
 }

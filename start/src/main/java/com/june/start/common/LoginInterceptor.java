@@ -24,16 +24,16 @@ public class LoginInterceptor implements HandlerInterceptor {
         HttpSession session = request.getSession();
         String sessionAttribute = (String) session.getAttribute("LoginStatus");
         if (sessionAttribute != null) {
-            String userName = redisTemplate.opsForValue().get(sessionAttribute);
-            if (userName != null) {
-                String onlineSession = redisTemplate.opsForValue().get(userName);
+            String userId = redisTemplate.opsForValue().get(sessionAttribute);
+            if (userId != null) {
+                String onlineSession = redisTemplate.opsForValue().get("userId:" + userId);
                 //当前用户不在线或在线的就是当前的session
                 if (onlineSession == null || sessionAttribute.equals(onlineSession)) {
                     session.setMaxInactiveInterval(24 * 60 * 60);
                     //重置redis的过期时间
                     redisTemplate.expire(sessionAttribute, 1, TimeUnit.DAYS);
-                    //将用户的登陆状态改为在线，5分钟后自动离线
-                    redisTemplate.expire(userName, 5, TimeUnit.MINUTES);
+                    //将用户的登陆状态改为在线，1分钟后自动离线
+                    redisTemplate.expire(userId, 1, TimeUnit.MINUTES);
                     return true;
                 }
             }

@@ -1,8 +1,10 @@
 package com.june.start.mapper;
 
+import com.june.start.common.po.LoginPo;
 import com.june.start.domain.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Select;
 
 /**
@@ -28,11 +30,19 @@ public interface UserMapper {
     int isDuplicated(String userName);
 
     /**
-     * 根据用户名查询密码用来验证登陆
+     * 根据用户名查询密码和用户id用来验证登陆
      * @param userName 用户名
-     * @return 加密后的密码
+     * @return 加密后的密码和id封装成的Po
      */
 
-    @Select("select user_pwd from user where user_name = #{userName}")
-    String getPwd(String userName);
+    @Select("select user_pwd as userPwd, user_id as userId from user where user_name = #{userName}")
+    LoginPo getLogin(String userName);
+
+    /**
+     * 根据用户id查询用户名
+     * @param userId 用户id
+     * @return 用户名
+     */
+    @Select("select user_name from user where user_id = #{userId}")
+    String getUserName(int userId);
 }

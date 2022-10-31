@@ -18,6 +18,7 @@ public class R {
     public R(String code, String message) {
         this.code = code;
         this.message = message;
+        data = new HashMap<>();
     }
 
 
@@ -32,7 +33,8 @@ public class R {
         return new R(ErrorCodeEnum.SUCCESS.getCode(), ErrorCodeEnum.SUCCESS.getDesc());
     }
 
-    public void put(String key, Object value) {
+    public R put(String key, Object value) {
         this.data.put(key, value);
+        return this;
     }
 }

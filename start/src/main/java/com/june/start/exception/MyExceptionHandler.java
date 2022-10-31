@@ -15,11 +15,11 @@ import java.util.stream.Collectors;
  */
 @RestControllerAdvice
 public class MyExceptionHandler {
-    @ExceptionHandler(RuntimeException.class)
-    public R hasException(RuntimeException e) {
-        System.out.println(e.getMessage());
-        return R.error("系统未知异常");
-    }
+//    @ExceptionHandler(RuntimeException.class)
+//    public R hasException(RuntimeException e) {
+//        System.out.println(e.getMessage());
+//        return R.error("系统未知异常");
+//    }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public R hasValidException(MethodArgumentNotValidException e) {

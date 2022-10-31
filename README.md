@@ -64,3 +64,6 @@
    * 参考资料：https://www.cnblogs.com/sueyyyy/p/11611676.html
    * 配置拦截器后遇到了配置拦截器后RedisTemplate为空指针的问题
    * 参考资料：https://blog.csdn.net/H1455483319/article/details/108328872
+5. 不允许多个设备同时在线√
+三、数据统计与拦截
+1. 统计网站用户在线人数√
