@@ -68,3 +68,5 @@
 
 三、数据统计与拦截
 1. 统计网站用户在线人数√
+2. 统计网站每日访问IP、PV、UV√
+   新知识点：https://www.runoob.com/redis/redis-hyperloglog.html
